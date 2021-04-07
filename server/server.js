@@ -25,7 +25,7 @@ const middleware = [
 
 middleware.forEach((it) => server.use(it))
 
-server.get('/', (req, res) => {
+server.get('/test', (req, res) => {
   res.send('Express Server')
 })
 
