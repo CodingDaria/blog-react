@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getPosts } from '../redux/reducers/postsReducer'
-import Post from './post'
-import NewPost from './newpost'
+import { getPosts } from '../../redux/reducers/postsReducer'
+import Post from '../post'
+import NewPost from './newpostform'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -14,7 +15,14 @@ const Home = () => {
     <div className="flex flex-col items-center h-screen w-screen bg-blue-100">
       <div className="flex flex-col items-center w-full">
         {posts.map((post) => {
-          return <Post key={post.id} title={post.title} body={post.body} />
+          return (
+            <div className="flex" key={post.id}>
+              <Post title={post.title} body={post.body} />
+              <Link to={`/${post.id}`} className="bg-blue-300 hover:bg-blue-400">
+                Show
+              </Link>
+            </div>
+          )
         })}
       </div>
       <NewPost />

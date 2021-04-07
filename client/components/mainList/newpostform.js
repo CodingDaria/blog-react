@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 // import { useDispatch } from 'react-redux'
 // import { getPosts } from '../redux/reducers/postsReducer'
-import NewPostButton from './newpostbutton'
+import AddButton from './addbutton'
 
 const NewPost = () => {
   const [title, setTitle] = useState('')
@@ -20,7 +20,7 @@ const NewPost = () => {
         value={body}
         onChange={(e) => setBody(e.target.value)}
       />
-      <NewPostButton title={title} body={body} setTitle={setTitle} setBody={setBody} />
+      <AddButton title={title} body={body} setTitle={setTitle} setBody={setBody} />
     </div>
   )
 }

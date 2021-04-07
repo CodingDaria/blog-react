@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { addPost } from '../redux/reducers/postsReducer'
+import { addPost } from '../../redux/reducers/postsReducer'
 
-const NewPostButton = (props) => {
+const AddButton = (props) => {
   const {
     title, body, setTitle, setBody
   } = props
@@ -21,4 +21,4 @@ const NewPostButton = (props) => {
   )
 }
 
-export default NewPostButton
+export default AddButton
