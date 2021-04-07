@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import AddButton from './addbutton'
-import SaveButton from '../postComponents/savebutton'
+import AddButton from '../buttons/addbutton'
+import SaveButton from '../buttons/savebutton'
 
 const PostForm = () => {
   const { isEditing, post } = useSelector(({ postsReducer }) => postsReducer)

@@ -1,16 +1,17 @@
 import React from 'react'
-import { useParams, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Header from './header'
-import PostList from './homeComponents/postlist'
-import PostExtended from './postComponents/postextended'
+import PostList from './postlist'
+import PostExtended from './postextended'
+import Error from './error'
 
 const Main = () => {
-  const { postId } = useParams()
   return (
     <div>
-      <Header postId={postId} />
+      <Header />
       <Switch>
         <Route exact path="/" component={() => <PostList />} />
+        <Route exact path="/error" component={() => <Error />} />
         <Route exact path="/:postId" component={() => <PostExtended />} />
       </Switch>
     </div>

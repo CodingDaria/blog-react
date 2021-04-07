@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { deletePost } from '../redux/reducers/postsReducer'
-import { history } from '../redux'
+import { deletePost } from '../../redux/reducers/postsReducer'
+import { history } from '../../redux'
 
 const DeleteButton = (props) => {
   const { postId } = props

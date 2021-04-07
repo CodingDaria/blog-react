@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { getSinglePost } from '../../redux/reducers/postsReducer'
-import Post from '../post'
-import PostForm from '../homeComponents/postform'
-import Comments from './comments'
-import EditButton from './editbutton'
-import DeleteButton from '../deletebutton'
+import { getSinglePost } from '../redux/reducers/postsReducer'
+import Post from './common/post'
+import PostForm from './common/postform'
+import Comments from './elements/comments'
+import EditButton from './buttons/editbutton'
+import DeleteButton from './buttons/deletebutton'
 
 const PostExtended = () => {
   const { postId } = useParams()
-  // const [isEditing, setEditing] = useState(false)
   const { isEditing } = useSelector(({ postsReducer }) => postsReducer)
   const dispatch = useDispatch()
   useEffect(() => {

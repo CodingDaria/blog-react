@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { history } from '..'
 
 const GET_POSTS = 'GET_POSTS'
 const GET_SINGLE_POST = 'GET_SINGLE_POST'
@@ -8,12 +9,14 @@ const ADD_COMMENT = 'ADD_COMMENT'
 const DELETE_POST = 'DELETE_POST'
 const SET_EDITING = 'SET_EDITING'
 const LOCATION_CHANGE = '@@router/LOCATION_CHANGE'
+const ERROR = 'ERROR'
 
 const initialState = {
   posts: [],
   post: {},
   comments: [],
-  isEditing: false
+  isEditing: false,
+  error: {}
 }
 
 export default (state = initialState, action) => {
@@ -53,6 +56,11 @@ export default (state = initialState, action) => {
         ...state,
         isEditing: false
       }
+    case ERROR:
+      return {
+        ...state,
+        error: action.err
+      }
     default:
       return state
   }
@@ -64,7 +72,8 @@ export function getPosts() {
       const { data: posts } = await axios('/api/v1/posts')
       dispatch({ type: GET_POSTS, posts })
     } catch (err) {
-      console.log(err)
+      dispatch({ type: ERROR, err })
+      history.push('/error')
     }
   }
 }
@@ -75,7 +84,8 @@ export function getSinglePost(postId) {
       const { data: post } = await axios(`/api/v1/posts/${postId}`)
       dispatch({ type: GET_SINGLE_POST, post, comments: post.comments })
     } catch (err) {
-      console.log(err)
+      dispatch({ type: ERROR, err })
+      history.push('/error')
     }
   }
 }
@@ -87,35 +97,20 @@ export function addPost(title, body) {
       const { data: posts } = await axios('/api/v1/posts')
       dispatch({ type: ADD_POST, posts })
     } catch (err) {
-      console.log(err)
+      dispatch({ type: ERROR, err })
+      history.push('/error')
     }
   }
 }
 
-// export function editPost(postId, title, body) {
-//   return async (dispatch) => {
-//     try {
-//       const { data: updatedPost } = await axios.patch(`/api/v1/posts/${postId}`, { title, body })
-//       console.log('redux after patch')
-//       // const { data: post } = await axios(`/api/v1/posts/${postId}`)
-//       dispatch({ type: EDIT_POST, updatedPost })
-//       console.log('redux after dispatch')
-//     } catch (err) {
-//       console.log(err)
-//     }
-//   }
-// }
-
 export function editPost(postId, title, body) {
   return async (dispatch) => {
     try {
-      console.log('show smth', postId, title, body)
       const { data: post } = await axios.put(`/api/v1/posts/${postId}`, { title, body })
-      console.log(post)
-      // const { data: post } = await axios(`/api/v1/posts/${postId}`)
       dispatch({ type: EDIT_POST, post })
     } catch (err) {
-      console.log(err)
+      dispatch({ type: ERROR, err })
+      history.push('/error')
     }
   }
 }
@@ -127,7 +122,8 @@ export function addComment(postId, body) {
       const { data: post } = await axios(`/api/v1/posts/${postId}`)
       dispatch({ type: ADD_COMMENT, post, newComment })
     } catch (err) {
-      console.log(err)
+      dispatch({ type: ERROR, err })
+      history.push('/error')
     }
   }
 }
@@ -139,7 +135,8 @@ export function deletePost(postId) {
       const { data: posts } = await axios('/api/v1/posts')
       dispatch({ type: DELETE_POST, posts })
     } catch (err) {
-      console.log(err)
+      dispatch({ type: ERROR, err })
+      history.push('/error')
     }
   }
 }

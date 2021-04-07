@@ -10,10 +10,7 @@ const SaveButton = (props) => {
       type="button"
       className="bg-blue-300 hover:bg-blue-400 border rounded p-2"
       onClick={() => {
-        console.log('predispatch')
         dispatch(editPost(postId, title, body))
-        console.log('dispatch edit')
-        // dispatch(getSinglePost(postId))
       }}
     >
       Save

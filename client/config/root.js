@@ -16,6 +16,7 @@ const Root = () => {
         <Startup>
           <Switch>
             <Route exact path="/" component={() => <Main />} />
+            <Route exact path="/error" component={() => <Main />} />
             <Route exact path="/:postId" component={() => <Main />} />
           </Switch>
         </Startup>
