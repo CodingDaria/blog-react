@@ -7,8 +7,7 @@ import store, { history } from '../redux'
 
 import Startup from './startup'
 
-import Home from '../components/mainList/home'
-import PostExtended from '../components/detailedPost/postextended'
+import Main from '../components/mainpage'
 
 const Root = () => {
   return (
@@ -16,8 +15,8 @@ const Root = () => {
       <ConnectedRouter history={history}>
         <Startup>
           <Switch>
-            <Route exact path="/" component={() => <Home />} />
-            <Route exact path="/:postId" component={() => <PostExtended />} />
+            <Route exact path="/" component={() => <Main />} />
+            <Route exact path="/:postId" component={() => <Main />} />
           </Switch>
         </Startup>
       </ConnectedRouter>
