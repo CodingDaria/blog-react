@@ -11,7 +11,7 @@ const AddCommentForm = () => {
     setCommentBody('')
   }
   return (
-    <div>
+    <div className="flex mt-2">
       <input
         type="text"
         placeholder="Enter comment"
@@ -22,9 +22,24 @@ const AddCommentForm = () => {
             click()
           }
         }}
+        className="shadow appearance-none border border-gray-500 rounded w-full p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
       />
-      <button type="button" onClick={click}>
-        Add
+      <button type="button" onClick={click} className="hover:bg-gray-100 h-8 w-8 rounded m-2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-8 w-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <title>Comment</title>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
+          />
+        </svg>
       </button>
     </div>
   )

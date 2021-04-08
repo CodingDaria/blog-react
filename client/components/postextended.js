@@ -16,11 +16,17 @@ const PostExtended = () => {
     dispatch(getSinglePost(postId))
   }, [isEditing, postId])
   return (
-    <div className="flex flex-col border-2 border-black">
-      {!isEditing && <Post />}
-      {isEditing && <PostForm />}
-      <EditButton />
-      <DeleteButton postId={postId} />
+    <div className="flex flex-col items-center w-full">
+      <div className="flex w-2/3 justify-between p-1 rounded overflow-hidden shadow-lg">
+        <div className="w-full mt-2">
+          {!isEditing && <Post />}
+          {isEditing && <PostForm />}
+        </div>
+        <div className="flex flex-col mt-2">
+          {!isEditing && <DeleteButton postId={postId} />}
+          <EditButton />
+        </div>
+      </div>
       <Comments />
     </div>
   )

@@ -8,9 +8,22 @@ const PostForm = () => {
   const [title, setTitle] = useState(isEditing ? post.title : '')
   const [body, setBody] = useState(isEditing ? post.body : '')
   return (
-    <div className="flex flex-col border border-black p-2">
-      <input type="text" placeholder="Post title" value={title} onChange={(e) => setTitle(e.target.value)} />
-      <input type="text" placeholder="Post body" value={body} onChange={(e) => setBody(e.target.value)} />
+    <div className="flex flex-col w-full mt-2 p-1">
+      <input
+        type="text"
+        placeholder="Post title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        className="shadow appearance-none box-border border border-gray-500 rounded w-full p-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
+      <textarea
+        type="text"
+        placeholder="Post body"
+        value={body}
+        onChange={(e) => setBody(e.target.value)}
+        rows="3"
+        className="shadow appearance-none border border-gray-500 rounded w-full p-2 mt-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      />
       {!isEditing && <AddButton title={title} body={body} setTitle={setTitle} setBody={setBody} />}
       {isEditing && <SaveButton postId={post.id} title={title} body={body} />}
     </div>

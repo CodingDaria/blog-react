@@ -32,7 +32,7 @@ server.get('/api/v1/posts', async (req, res) => {
     const { data: posts } = await axios('https://bloggy-api.herokuapp.com/posts')
     res.json(posts)
   } catch (err) {
-    console.log(err)
+    console.log(err.message)
   }
 })
 
@@ -42,7 +42,7 @@ server.get('/api/v1/posts/:postId', async (req, res) => {
     const { data: post } = await axios(`https://bloggy-api.herokuapp.com/posts/${postId}?_embed=comments`)
     res.json(post)
   } catch (err) {
-    console.log(err)
+    console.log(err.message)
   }
 })
 
@@ -50,10 +50,10 @@ server.post('/api/v1/posts', async (req, res) => {
   const { title, body } = req.body
   const id = nanoid()
   try {
-    const post = await axios.post('https://bloggy-api.herokuapp.com/posts', { id, title, body })
+    const { data: post} = await axios.post('https://bloggy-api.herokuapp.com/posts', { id, title, body })
     res.json(post)
   } catch (err) {
-    console.log(err)
+    console.log(err.message)
   }
 })
 
@@ -61,20 +61,13 @@ server.put('/api/v1/posts/:postId', async (req, res) => {
   const { postId } = req.params
   const { title, body } = req.body
   try {
-    // const { data: post } = await axios(
-    //   `https://bloggy-api.herokuapp.com/posts/${postId}?_embed=comments`
-    // )
-    // const title = req.body.title ? req.body.title : post.title
-    // const body = req.body.body ? req.body.body : post.body
     const { data: updatedPost } = await axios.put(`https://bloggy-api.herokuapp.com/posts/${postId}`, {
       title,
       body
     })
     res.json(updatedPost)
-    // const { data: posts } = await axios('https://bloggy-api.herokuapp.com/posts')
-    // res.json(posts)
   } catch (err) {
-    throw new Error(err)
+    console.log(err.message)
   }
 })
 
@@ -84,13 +77,13 @@ server.post('/api/v1/posts/:postId', async (req, res) => {
   const commentId = nanoid()
   try {
     const { data: comment } = await axios.post('https://bloggy-api.herokuapp.com/comments', {
-      postId,
+      postId: Number.isNaN(+postId) ? postId : +postId,
       id: commentId,
       body
     })
     res.json(comment)
   } catch (err) {
-    console.log(err)
+    console.log(err.message)
   }
 })
 
@@ -100,7 +93,7 @@ server.delete('/api/v1/posts/:postId', async (req, res) => {
     axios.delete(`https://bloggy-api.herokuapp.com/posts/${postId}`)
     res.json({ status: 'deleted' })
   } catch (err) {
-    console.log(err)
+    console.log(err.message)
   }
 })
 

@@ -3,11 +3,10 @@ import { useSelector } from 'react-redux'
 
 const Error = () => {
   const { error } = useSelector(({ postsReducer }) => postsReducer)
-  console.log(error)
   return (
     <div>
       Error!
-      {JSON.stringify(error)}
+      {` ${error.message}`}
     </div>
   )
 }

@@ -11,13 +11,15 @@ const PostList = () => {
     dispatch(getPosts())
   }, [])
   return (
-    <div className="flex flex-col items-center h-screen w-screen bg-blue-100">
-      <div className="flex flex-col items-center w-full">
+    <div className="flex flex-col items-center w-screen">
+      <div className="flex flex-col items-center w-2/3">
         {posts.map((post) => {
           return <PostItem key={post.id} post={post} />
         })}
       </div>
-      <PostForm />
+      <div className="w-2/3 rounded overflow-hidden shadow-lg">
+        <PostForm />
+      </div>
     </div>
   )
 }

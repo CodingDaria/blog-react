@@ -93,9 +93,9 @@ export function getSinglePost(postId) {
 export function addPost(title, body) {
   return async (dispatch) => {
     try {
-      axios.post('/api/v1/posts', { title, body })
+      const { data: newPost } = await axios.post('/api/v1/posts', { title, body })
       const { data: posts } = await axios('/api/v1/posts')
-      dispatch({ type: ADD_POST, posts })
+      dispatch({ type: ADD_POST, newPost, posts })
     } catch (err) {
       dispatch({ type: ERROR, err })
       history.push('/error')
