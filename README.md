@@ -3,6 +3,7 @@
 ## React Blog
 
 React blog with Redux
+
 Tailwind used for styling
 
 ## How to use it?
